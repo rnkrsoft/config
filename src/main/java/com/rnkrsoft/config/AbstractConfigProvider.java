@@ -87,6 +87,31 @@ public abstract class AbstractConfigProvider implements ConfigProvider {
         return value;
     }
 
+    @Override
+    public String getString(String name) {
+        return getString(name, null);
+    }
+
+    @Override
+    public Integer getInteger(String name) {
+        return getInteger(name, 0);
+    }
+
+    @Override
+    public Long getLong(String name) {
+        return getLong(name, 0L);
+    }
+
+    @Override
+    public Double getDouble(String name) {
+        return getDouble(name, 0D);
+    }
+
+    @Override
+    public Boolean getBoolean(String name) {
+        return getBoolean(name, false);
+    }
+
     public Boolean getBoolean(String name, Boolean defaultValue) {
         Boolean value = getParam(name, Boolean.class);
         if (value == null) {

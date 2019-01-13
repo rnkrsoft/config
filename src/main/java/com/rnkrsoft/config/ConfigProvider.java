@@ -55,11 +55,23 @@ public interface ConfigProvider {
     /**
      * 获取指定参数名的字符串值
      * @param name 参数名
+     * @return 参数值
+     */
+    String getString(String name);
+    /**
+     * 获取指定参数名的字符串值
+     * @param name 参数名
      * @param defaultValue 如果为null时返回默认值
      * @return 参数值
      */
     String getString(String name, String defaultValue);
 
+    /**
+     * 获取指定参数名的字符串值
+     * @param name 参数名
+     * @return 参数值
+     */
+    Integer getInteger(String name);
     /**
      * 获取指定参数名的字符串值
      * @param name 参数名
@@ -71,6 +83,12 @@ public interface ConfigProvider {
     /**
      * 获取指定参数名的字符串值
      * @param name 参数名
+     * @return 参数值
+     */
+    Long getLong(String name);
+    /**
+     * 获取指定参数名的字符串值
+     * @param name 参数名
      * @param defaultValue 如果为null时返回默认值
      * @return 参数值
      */
@@ -79,11 +97,23 @@ public interface ConfigProvider {
     /**
      * 获取指定参数名的字符串值
      * @param name 参数名
+     * @return 参数值
+     */
+    Double getDouble(String name);
+    /**
+     * 获取指定参数名的字符串值
+     * @param name 参数名
      * @param defaultValue 如果为null时返回默认值
      * @return 参数值
      */
     Double getDouble(String name, Double defaultValue);
 
+    /**
+     * 获取指定参数名的字符串值
+     * @param name 参数名
+     * @return 参数值
+     */
+    Boolean getBoolean(String name);
     /**
      * 获取指定参数名的字符串值
      * @param name 参数名

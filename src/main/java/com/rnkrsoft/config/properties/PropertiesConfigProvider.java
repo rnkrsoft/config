@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class PropertiesConfigProvider extends AbstractConfigProvider implements Runnable {
 
-    final Properties PROPERTIES = new Properties();
+    final Properties properties = new Properties();
     String name;
     long lastModified = 0L;
     File file;
@@ -52,14 +52,14 @@ public class PropertiesConfigProvider extends AbstractConfigProvider implements 
                 return;
             }
             is = new FileInputStream(file);
-            PROPERTIES.load(is);
+            properties.load(is);
             lastModified = file.lastModified();
         } catch (IOException e) {
             if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e1) {
-                    e1.printStackTrace();
+                    e.printStackTrace();
                 }
             }
         }
@@ -73,25 +73,25 @@ public class PropertiesConfigProvider extends AbstractConfigProvider implements 
                 dir.mkdirs();
             }
             fos = new FileOutputStream(file);
-            PROPERTIES.store(fos, "");
+            properties.store(fos, name);
         } catch (Exception e) {
             if (fos != null) {
                 try {
                     fos.close();
                 } catch (IOException e1) {
-                    e1.printStackTrace();
+                    e.printStackTrace();
                 }
             }
         }
     }
 
     public void param(String name, String value) {
-        PROPERTIES.setProperty(name, value);
+        properties.setProperty(name, value);
     }
 
 
     public <T> T getParam(String paramName, Class<T> paramClass) {
-        Object value = PROPERTIES.getProperty(paramName);
+        Object value = properties.getProperty(paramName);
         return convert(value, paramClass);
     }
 
