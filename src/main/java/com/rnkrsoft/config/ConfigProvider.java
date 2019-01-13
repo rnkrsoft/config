@@ -37,13 +37,13 @@ public interface ConfigProvider {
     void param(String name, String value);
 
     /**
-     *
-     * @param paramName
-     * @param paramClass
-     * @param <T>
-     * @return
+     * 获取参数
+     * @param name 参数名
+     * @param paramClass 参数值类型
+     * @param <T> 参数值类型
+     * @return 参数值
      */
-    <T> T getParam(String paramName, Class<T> paramClass);
+    <T> T getParam(String name, Class<T> paramClass);
 
     /**
      * 获取指定参数名的数组值
