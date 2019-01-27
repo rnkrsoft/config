@@ -37,7 +37,10 @@ public class PropertiesConfigProvider extends AbstractConfigProvider implements 
     @Override
     public void init(int reloadInterval) {
         reload();
-        scheduledThreadPool.scheduleWithFixedDelay(this, reloadInterval, reloadInterval, TimeUnit.SECONDS);
+        //如果重新加载的时间间隔大于0，则启动定时任务
+        if (reloadInterval > 0) {
+            scheduledThreadPool.scheduleWithFixedDelay(this, reloadInterval, reloadInterval, TimeUnit.SECONDS);
+        }
     }
 
     @Override
@@ -59,7 +62,7 @@ public class PropertiesConfigProvider extends AbstractConfigProvider implements 
                 try {
                     is.close();
                 } catch (IOException e1) {
-                    e.printStackTrace();
+                    ;
                 }
             }
         }

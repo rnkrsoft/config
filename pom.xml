@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.rnkrsoft.config</groupId>
     <artifactId>config</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>Rnkrsoft Config Library</name>
     <description>Rnkrsoft Config Library</description>
     <url>https://github.com/rnkrsoft/config.git</url>

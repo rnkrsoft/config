@@ -19,9 +19,8 @@ public abstract class ConfigProviderFactory {
      * 构建属性文件的实例
      * @param name 配置文件名称
      * @return 配置提供者
-     * @throws Exception 异常
      */
-    public synchronized static ConfigProvider getPropertiesInstance(String name) throws Exception{
+    public synchronized static ConfigProvider getPropertiesInstance(String name){
         return getInstance(PropertiesConfigProvider.class.getName(), name);
     }
 
@@ -30,9 +29,8 @@ public abstract class ConfigProviderFactory {
      * @param clazz 配置提供者实现类
      * @param name 配置文件名称
      * @return 配置提供者
-     * @throws Exception 异常
      */
-    public synchronized static ConfigProvider getInstance(Class clazz, String name) throws Exception{
+    public synchronized static ConfigProvider getInstance(Class clazz, String name){
         if (INSTANCES.containsKey(name)) {
             return INSTANCES.get(name);
         } else {
@@ -41,7 +39,7 @@ public abstract class ConfigProviderFactory {
                 Constructor constructor = clazz.getConstructor(String.class);
                 instance = (ConfigProvider) constructor.newInstance(name);
             } catch (Exception e) {
-                throw e;
+                throw new RuntimeException("构建配置提供者发生异常", e);
             }
             INSTANCES.put(name, instance);
             return instance;
@@ -52,10 +50,14 @@ public abstract class ConfigProviderFactory {
      * @param className 配置提供者实现类
      * @param name 配置文件名称
      * @return 配置提供者
-     * @throws Exception 异常
      */
-    public synchronized static ConfigProvider getInstance(String className, String name) throws Exception{
-        Class  clazz = Class.forName(className);
+    public synchronized static ConfigProvider getInstance(String className, String name){
+        Class  clazz = null;
+        try {
+            clazz = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("构建配置提供者发生异常", e);
+        }
         return getInstance(clazz, name);
     }
 }
